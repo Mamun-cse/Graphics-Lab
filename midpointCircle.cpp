@@ -50,7 +50,7 @@ void pixel(int xc,int yc,int x,int y)
 	putpixel(-x+xc, -y+yc, WHITE);
 	putpixel(y+xc, x+yc, YELLOW);
 	putpixel(y+xc, -x+yc, YELLOW);
-       putpixel(-y+xc, x+yc, RED);
+        putpixel(-y+xc, x+yc, RED);
 	putpixel(-y+xc, -x+yc, RED);
 	delay(100);
 }
