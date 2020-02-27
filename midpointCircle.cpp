@@ -6,9 +6,9 @@ using namespace std;
 void pixel(int xc,int yc,int x,int y);
 int main()
 {
-	int gd,gm,xc,yc,r,x,y,p;
+	int rr,g,xc,yc,r,x,y,p;
 	//detectgraph(&gd,&gm);
-	initgraph(&gd,&gm," ");
+	initgraph(&rr,&g," ");
 
 	printf("Enter center of circle :");
 	scanf("%d%d",&xc,&yc);
@@ -25,13 +25,13 @@ int main()
 		if(p<0)
 		{
 			x++;
-			p=p+2*x+1;
+			p=p+2*x+3;
 		}
 		else
 		{
 			x++;
 			y--;
-			p=p+2*(x-y)+1;
+			p=p+2*(x-y)+5;
 		}
 		pixel(xc,yc,x,y);
 	}
@@ -50,7 +50,7 @@ void pixel(int xc,int yc,int x,int y)
 	putpixel(-x+xc, -y+yc, WHITE);
 	putpixel(y+xc, x+yc, YELLOW);
 	putpixel(y+xc, -x+yc, YELLOW);
-    putpixel(-y+xc, x+yc, RED);
+       putpixel(-y+xc, x+yc, RED);
 	putpixel(-y+xc, -x+yc, RED);
-	delay(1000);
+	delay(100);
 }
