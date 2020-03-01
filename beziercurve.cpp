@@ -1,56 +1,40 @@
-#include<graphics.h>
 #include<bits/stdc++.h>
-#include<stdio.h>
-
+#include<conio.h>
+#include<graphics.h>
 using namespace std;
-void pixel(int xc,int yc,int x,int y);
-int main()
-{
-	int gd,gm,xc,yc,r,x,y,p;
-	//detectgraph(&gd,&gm);
-	initgraph(&gd,&gm," ");
 
-	printf("Enter center of circle :");
-	scanf("%d%d",&xc,&yc);
-	printf("Enter radius of circle :");
-	scanf("%d",&r);
+int getPt( int n1 , int n2 , float perc){
+        return n1 + (n2 - n1)*perc;
+    }
 
-	x=0;
-	y=r;
-	p=1-r;
-	pixel(xc,yc,x,y);
+int main(){
+   int xa, ya, xb, yb, x1, y1, x2, y2, x3, y3, x, y;
+   cout<<"Enter 3 Points (x1,y1,x2,y2,x3,y3): ";
+   cin>>x1>>y1>>x2>>y2>>x3>>y3;
+	int gd = DETECT, gm;
+   initgraph(&gd, &gm, "");
+    setfillstyle(SOLID_FILL, RED);
+   circle(x1,y1, 5);
+    floodfill(x1,y1, WHITE);
+   circle(x2,y2, 5);
+    floodfill(x2,y2, WHITE);
+   circle(x3,y3, 5);
+    floodfill(x3,y3, WHITE);
+    setcolor(WHITE);
+    line(x1,y1,x2,y2);
+    line(x2,y2,x3,y3);
+    for( float i=0; i<1; i=i+0.00001 ){
+        xa = getPt( x1 , x2 , i );
+        ya = getPt( y1 , y2 , i );
+        xb = getPt( x2 , x3 , i );
+        yb = getPt( y2 , y3 , i );
 
-	while(x<y)
-	{
-		if(p<0)
-		{
-			x++;
-			p=p+2*x+1;
-		}
-		else
-		{
-			x++;
-			y--;
-			p=p+2*(x-y)+1;
-		}
-		pixel(xc,yc,x,y);
-	}
+        x = getPt( xa , xb , i );
+        y = getPt( ya , yb , i );
 
-	getch();
+        putpixel( x , y , RED );
+    }
+    getch();
 	closegraph();
-	return 0;
-}
-
-void pixel(int xc,int yc,int x,int y)
-{
-
-	putpixel(x+xc,y+yc,GREEN);
-	putpixel(-x+xc,y+yc,GREEN);
-	putpixel(x+xc, -y+yc,WHITE);
-	putpixel(-x+xc, -y+yc, WHITE);
-	putpixel(y+xc, x+yc, YELLOW);
-	putpixel(y+xc, -x+yc, YELLOW);
-    putpixel(-y+xc, x+yc, RED);
-	putpixel(-y+xc, -x+yc, RED);
-	delay(1000);
+    return 0;
 }
